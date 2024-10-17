@@ -1,4 +1,4 @@
-#include "stdio.h"
+#include <stdio.h>
 
 int greatest_common_divisor(int a, int b);
 int input_coefficient(const char *prompt, int *value);
