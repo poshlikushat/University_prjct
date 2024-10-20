@@ -4,5 +4,7 @@ int main (void) {
     char* a = "Hello, world!";
     printf("%s\n", a);
 
-    return 0;
+    return 1;
 }
+
+// Hi!dkfbasdjlfbasdhjklf
