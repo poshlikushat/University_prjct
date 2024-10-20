@@ -1,10 +1,10 @@
 #include <stdio.h>
 
 int main (void) {
-    char* a = "Hello, world!";
+    char* a = "Hello, world!!!!!!";
     printf("%s\n", a);
 
-    return 1;
+    return 0;
 }
 
-// Hi!dkfbasdjlfbasdhjklf
+// Hi!
