@@ -71,18 +71,18 @@ static void mergeSortedArrays (int* arr, int l, int m, int r) {
 }
 
 
-// int compareInt () {
+int compareInt (void* ptr_a, void* ptr_b) {
+	
+}
 
-// }
+int compareFloat(void *ptr_a, void *ptr_b) {
 
-// int compareFloat () {
+}
 
-// }
+int compareChar(void *ptr_a, void *ptr_b) {
 
-// int compareChar () {
+}
 
-// }
+int compareString(void *ptr_a, void *ptr_b) { 
 
-// int compareString () {
-
-// }
+}
