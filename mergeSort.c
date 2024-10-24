@@ -1,8 +1,5 @@
 #include "mergeSort.h"
 
-#define TRUE 1
-#define FALSE 0
-
 static void mergeSortRecursion(int arr[], int l, int r);
 static void mergeSortedArrays(int arr[], int l, int m, int r);
 
