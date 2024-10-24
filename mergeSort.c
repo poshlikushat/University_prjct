@@ -1,13 +1,13 @@
 #include "mergeSort.h"
 
-static void mergeSortRecursion(int arr[], int l, int r);
-static void mergeSortedArrays(int arr[], int l, int m, int r);
+static void mergeSortRecursion(int* arr, int l, int r);
+static void mergeSortedArrays(int* arr, int l, int m, int r);
 
-void mergeSort(int arr[], int length) {
+void mergeSort(int* arr, int length) {
 	mergeSortRecursion(arr, 0, length - 1);
 }
 
-static void mergeSortRecursion (int arr[], int l, int r) {
+static void mergeSortRecursion (int* arr, int l, int r) {
 	if (l < r) {
 		int m = l + (r - l) / 2;
 
@@ -18,7 +18,7 @@ static void mergeSortRecursion (int arr[], int l, int r) {
 }
 
 
-static void mergeSortedArrays (int arr[], int l, int m, int r) {
+static void mergeSortedArrays (int* arr, int l, int m, int r) {
 	int leftLength = m - l + 1;
 	int rightLength = r - m;
 

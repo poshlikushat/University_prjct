@@ -1,3 +1,3 @@
 #pragma once
 
-void mergeSort(int arr[], int length);
+void mergeSort(int* arr, int length);
