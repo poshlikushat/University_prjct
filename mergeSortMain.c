@@ -1,27 +1,34 @@
 #include <stdio.h>
 #include "mergeSort.h"
 
+int compareInt(const void *ptr_a, const void *ptr_b);
+int compareFloat(const void *ptr_a, const void *ptr_b);
+int compareChar(const void *ptr_a, const void *ptr_b);
 
-int compareInt(void *ptr_a, void *ptr_b);
-
-
-int main() {
-	int array[] = {9, 4, 8, 1, 7, 0, 3, 2, 5, 6};
+	int main()
+{
+	const char *array[] = { "apple", "orange", "banana", "grape", "pear" };
 	int length = sizeof(array) / sizeof(array[0]);
 
-	void* arr_ptr = (void*)array;
-	void* ptr0 = (void*)((char*)arr_ptr + 0);
-	void* ptr1 = (void*)((char*)arr_ptr + 4);
+	mergeSort(array, length, sizeof(char* * 25), compareChar);
 
-	printf("%d\n", compareInt(ptr0, ptr1));
-
+	for (int i = 0; i < length; i++) {
+		printf("%s\n", array[i]);
+	}
+	printf("\n");
 }
 
-
-int compareInt(void *ptr_a, void *ptr_b)
+int compareInt(const void *ptr_a, const void *ptr_b) 
 {
-	if (*(int *)(ptr_a) >= *(int *)(ptr_b)) {
-		return 1;
-	}
-	else return 0;
+	return (*(int *)(ptr_a) >= *(int *)(ptr_b)) ? 1 : 0;
+}
+
+int compareFloat(const void *ptr_a, const void *ptr_b)
+{
+	return (*(float *)(ptr_a) >= *(float *)(ptr_b)) ? 1 : 0;
+}
+
+int compareChar(const void *ptr_a, const void *ptr_b)
+{
+	return (*(char *)(ptr_a) >= *(char *)(ptr_b)) ? 1 : 0;
 }

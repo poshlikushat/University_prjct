@@ -1,44 +1,40 @@
 #include "mergeSort.h"
+#include <string.h>
+#include <stdlib.h>
 
-static void mergeSortRecursion(int *arr, int l, int r);
-static void mergeSortedArrays(int *arr, int l, int m, int r);
+static void mergeSortRecursion(void *arr, int l, int r, int typeSize, int (*cmp)(const void *, const void *));
+static void mergeSortedArrays(void *arr, int l, int m, int r, int typeSize, int (*cmp)(const void *, const void *));
 
-void mergeSort(int *arr, int length)
+void mergeSort(void *arr, int length, int typeSize, int (*cmp)(const void *, const void *))
 {
-	mergeSortRecursion(arr, 0, length - 1);
+	mergeSortRecursion(arr, 0, length - 1, typeSize, cmp);
 }
 
-static void mergeSortRecursion(int *arr, int l, int r)
+static void mergeSortRecursion(void *arr, int l, int r, int typeSize, int (*cmp)(const void *, const void *))
 {
 	if (l < r)
 	{
 		int m = l + (r - l) / 2;
 
-		mergeSortRecursion(arr, l, m);
-		mergeSortRecursion(arr, m + 1, r);
-		mergeSortedArrays(arr, l, m, r);
+		mergeSortRecursion(arr, l, m, typeSize, cmp);
+		mergeSortRecursion(arr, m + 1, r, typeSize, cmp);
+		mergeSortedArrays(arr, l, m, r, typeSize, cmp);
 	}
 }
 
-static void mergeSortedArrays(int *arr, int l, int m, int r)
+static void mergeSortedArrays(void *arr, int l, int m, int r, int typeSize, int (*cmp)(const void *, const void *))
 {
 	int leftLength = m - l + 1;
 	int rightLength = r - m;
 
-	int tempLeft[leftLength];
-	int tempRight[rightLength];
+	void *tempLeft = malloc(leftLength * typeSize);
+	void *tempRight = malloc(rightLength * typeSize);
+
+	memcpy(tempLeft, (char*)arr + l * typeSize, leftLength * typeSize);
+	memcpy(tempRight, (char*)arr + (m + 1) * typeSize, rightLength * typeSize);
+
 
 	int i, j, k;
-
-	for (i = 0; i < leftLength; i++)
-	{
-		tempLeft[i] = arr[l + i];
-	}
-
-	for (j = 0; j < rightLength; j++)
-	{
-		tempRight[j] = arr[m + 1 + j];
-	}
 
 	i = 0;
 	j = 0;
@@ -46,14 +42,15 @@ static void mergeSortedArrays(int *arr, int l, int m, int r)
 
 	while (i < leftLength && j < rightLength)
 	{
-		if (tempLeft[i] <= tempRight[j])
+		if (cmp((char*)tempLeft + i * typeSize, (char*)tempRight + j * typeSize) <= 0)
 		{
-			arr[k] = tempLeft[i];
+			// arr[k] = tempLeft[i];
+			memcpy((char*)arr + k * typeSize, (char* )tempLeft + i * typeSize, typeSize);
 			i++;
 		}
 		else
 		{
-			arr[k] = tempRight[j];
+			memcpy((char *)arr + k * typeSize, (char *)tempRight + j * typeSize, typeSize);
 			j++;
 		}
 		k++;
@@ -61,14 +58,14 @@ static void mergeSortedArrays(int *arr, int l, int m, int r)
 
 	while (i < leftLength)
 	{
-		arr[k] = tempLeft[i];
+		memcpy((char *)arr + k * typeSize, (char *)tempLeft + i * typeSize, typeSize);
 		i++;
 		k++;
 	}
 
 	while (j < rightLength)
 	{
-		arr[k] = tempRight[j];
+		memcpy((char *)arr + k * typeSize, (char *)tempRight + j * typeSize, typeSize);
 		j++;
 		k++;
 	}
