@@ -4,16 +4,17 @@
 int compareInt(const void *ptr_a, const void *ptr_b);
 int compareFloat(const void *ptr_a, const void *ptr_b);
 int compareChar(const void *ptr_a, const void *ptr_b);
+int compareDouble(const void *ptr_a, const void *ptr_b);
 
 	int main()
 {
-	const char *array[] = { "apple", "orange", "banana", "grape", "pear" };
+	double array[] = {5.3, 24.3, 1.00001, 1.00000};
 	int length = sizeof(array) / sizeof(array[0]);
 
-	mergeSort(array, length, sizeof(char* * 25), compareChar);
+	mergeSort(array, length, sizeof(double), compareDouble);
 
 	for (int i = 0; i < length; i++) {
-		printf("%s\n", array[i]);
+		printf("%.50lf\n", array[i]);
 	}
 	printf("\n");
 }
@@ -31,4 +32,9 @@ int compareFloat(const void *ptr_a, const void *ptr_b)
 int compareChar(const void *ptr_a, const void *ptr_b)
 {
 	return (*(char *)(ptr_a) >= *(char *)(ptr_b)) ? 1 : 0;
+}
+
+int compareDouble(const void *ptr_a, const void *ptr_b)
+{
+	return (*(double *)(ptr_a) >= *(double *)(ptr_b)) ? 1 : 0;
 }
