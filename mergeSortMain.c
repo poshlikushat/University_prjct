@@ -8,6 +8,13 @@ int compareChar(const void *ptr_a, const void *ptr_b);
 int compareDouble(const void *ptr_a, const void *ptr_b);
 int compareStruct(const void *ptr_a, const void *ptr_b);
 
+typedef struct personInfo
+{
+	char last_name[25];
+	char first_name[25];
+	char sex;
+} INFO;
+
 	int main()
 {
 	// double array[] = {5.3, 24.3, 1.00001, 1.00000};
