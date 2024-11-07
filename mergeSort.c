@@ -2,23 +2,23 @@
 #include <string.h>
 #include <stdlib.h>
 
-static void mergeSortRecursion(void *arr, int l, int r, int typeSize, int (*cmp)(const void *, const void *));
 static void mergeSortedArrays(void *arr, int l, int m, int r, int typeSize, int (*cmp)(const void *, const void *));
 
 void mergeSort(void *arr, int length, int typeSize, int (*cmp)(const void *, const void *))
 {
-	mergeSortRecursion(arr, 0, length - 1, typeSize, cmp);
-}
-
-static void mergeSortRecursion(void *arr, int l, int r, int typeSize, int (*cmp)(const void *, const void *))
-{
-	if (l < r)
+	for (int step = 1; step < length; step *= 2)
 	{
-		int m = l + (r - l) / 2;
+		for (int i = 0; i < length; i += 2 * step)
+		{
+			int l = i;
+			int m = (i + step - 1 < length) ? i + step - 1 : length - 1;
+			int r = (i + 2 * step - 1 < length) ? i + 2 * step - 1 : length - 1;
 
-		mergeSortRecursion(arr, l, m, typeSize, cmp);
-		mergeSortRecursion(arr, m + 1, r, typeSize, cmp);
-		mergeSortedArrays(arr, l, m, r, typeSize, cmp);
+			if (m < r)
+			{
+				mergeSortedArrays(arr, l, m, r, typeSize, cmp);
+			}
+		}
 	}
 }
 
