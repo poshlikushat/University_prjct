@@ -22,6 +22,7 @@ void mergeSort(void *arr, int length, int typeSize, int (*cmp)(const void *, con
 	}
 }
 
+
 static void mergeSortedArrays(void *arr, int l, int m, int r, int typeSize, int (*cmp)(const void *, const void *))
 {
 	int leftLength = m - l + 1;
